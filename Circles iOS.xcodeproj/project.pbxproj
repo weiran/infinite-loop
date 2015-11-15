@@ -14,6 +14,7 @@
 		24CF59591BF8A50F0031AF29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CF59571BF8A50F0031AF29 /* Main.storyboard */; };
 		24CF595B1BF8A50F0031AF29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CF595A1BF8A50F0031AF29 /* Assets.xcassets */; };
 		24CF595E1BF8A50F0031AF29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CF595C1BF8A50F0031AF29 /* LaunchScreen.storyboard */; };
+		24CF596A1BF8AEDE0031AF29 /* CirclesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF59691BF8AEDE0031AF29 /* CirclesScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		24CF595A1BF8A50F0031AF29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24CF595D1BF8A50F0031AF29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24CF595F1BF8A50F0031AF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24CF59691BF8AEDE0031AF29 /* CirclesScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CirclesScene.swift; path = Circles/CirclesScene.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		24CF594E1BF8A50F0031AF29 /* Circles iOS */ = {
 			isa = PBXGroup;
 			children = (
+				24CF59691BF8AEDE0031AF29 /* CirclesScene.swift */,
 				24CF594F1BF8A50F0031AF29 /* AppDelegate.swift */,
 				24CF59511BF8A50F0031AF29 /* GameScene.sks */,
 				24CF59531BF8A50F0031AF29 /* GameScene.swift */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CF596A1BF8AEDE0031AF29 /* CirclesScene.swift in Sources */,
 				24CF59541BF8A50F0031AF29 /* GameScene.swift in Sources */,
 				24CF59561BF8A50F0031AF29 /* GameViewController.swift in Sources */,
 				24CF59501BF8A50F0031AF29 /* AppDelegate.swift in Sources */,
