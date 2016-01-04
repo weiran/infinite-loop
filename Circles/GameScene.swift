@@ -10,8 +10,6 @@ import SpriteKit
 
 class GameScene: CirclesScene {
     override func didMoveToView(view: SKView) {
-        scoreLabelX = 140
-        scoreLabelY = frame.midY
         super.didMoveToView(view)
     }
 }

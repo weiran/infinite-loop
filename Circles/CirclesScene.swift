@@ -14,8 +14,6 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     let radius : CGFloat = 180
     let width : CGFloat = 12
     let circleSize = 20
-    var scoreLabelX : CGFloat = 0
-    var scoreLabelY : CGFloat = 0
     
     private var targetCircle : SKShapeNode?
     private var aimCircle : SKShapeNode?
@@ -26,14 +24,13 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var level = 0
     var score = 0 {
         didSet {
-            scoreLabel?.text = "\(score)"
-            
+            scoreLabel?.text = "\(score)"            
             switch score {
-            case 0...4: level = 0
-            case 5...9: level = 1
-            case 10...14: level = 2
-            case 15...19: level = 3
-            default: level = 4
+                case 0...4: level = 0
+                case 5...9: level = 1
+                case 10...14: level = 2
+                case 15...19: level = 3
+                default: level = 4
             }
         }
     }
@@ -129,9 +126,10 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     private func configureScoreLabel() {
         let scoreLabel = SKLabelNode()
         scoreLabel.text = "0"
-        scoreLabel.position = CGPointMake(scoreLabelX, scoreLabelY)
+        scoreLabel.position = CGPointMake(frame.midX, frame.midY)
         scoreLabel.fontColor = SKColor.blackColor()
         scoreLabel.fontSize = 64
+        scoreLabel.fontName = "SanFranciscoDisplay-Bold"
         
         self.addChild(scoreLabel)
         self.scoreLabel = scoreLabel
