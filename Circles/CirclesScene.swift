@@ -169,6 +169,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                     aimCircle.runAction(repeatAction)
                 }
             } else {
+                duration = 1 // reset duration
                 print("Miss")
                 aimCircle?.removeAllActions()
                 let failedAlert = UIAlertController(title: "Missed", message: "Your top score is \(score)", preferredStyle: .Alert)
