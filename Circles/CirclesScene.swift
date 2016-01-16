@@ -36,6 +36,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    var leaderboardTopScore = 0
     
     override func didMoveToView(view: SKView) {
         configureBackgroundGradient()
@@ -43,6 +44,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         configureTargetCircle()
         configureAimCircle()
         configureScoreLabel()
+        getLeaderboardTopScore()
         
         self.physicsWorld.contactDelegate = self
     }
@@ -197,15 +199,34 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 duration = 1 // reset duration
                 print("Miss")
                 aimCircle?.removeAllActions()
-                GCHelper.sharedInstance.reportLeaderboardIdentifier("TopScore", score: score)
                 
-                let failedAlert = UIAlertController(title: "Missed", message: "Your top score is \(score)", preferredStyle: .Alert)
+                // report score
+                let scoreObject = GKScore(leaderboardIdentifier: "CirclesTopScore")
+                scoreObject.value = Int64(score)
+                GKScore.reportScores([scoreObject]) { (error) -> Void in
+                    if error != nil {
+                        print("Error in reporting leaderboard scores: \(error)")
+                    }
+                }
+                
+                let topScore = max(score, leaderboardTopScore)
+                let failedAlert = UIAlertController(title: "Missed", message: "Ha Ha.\nYour top score is \(topScore)", preferredStyle: .Alert)
                 failedAlert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (_) -> Void in
                     self.reset()
                 }))
                 self.parentViewController?.presentViewController(failedAlert, animated: true, completion: nil)
             }
         }
+    }
+    
+    private func getLeaderboardTopScore() {
+        let leaderboardRequest = GKLeaderboard()
+        leaderboardRequest.identifier = "CirclesTopScore"
+        leaderboardRequest.loadScoresWithCompletionHandler({ (scores: [GKScore]?, error: NSError?) -> Void in
+            if let topScore = leaderboardRequest.localPlayerScore?.value {
+                self.leaderboardTopScore = max(self.leaderboardTopScore, Int(topScore))
+            }
+        })
     }
 }
 
