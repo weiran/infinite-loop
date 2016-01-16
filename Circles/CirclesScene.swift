@@ -62,8 +62,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         UIGraphicsEndImageContext()
         
         let node = SKSpriteNode(texture: SKTexture(image: image));
-        node.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame))
-        node.zPosition = -1
+        node.position = CGPointMake(frame.midX, frame.midY)
+        node.zPosition = -1 // behind everything
         self.addChild(node)
     }
     
