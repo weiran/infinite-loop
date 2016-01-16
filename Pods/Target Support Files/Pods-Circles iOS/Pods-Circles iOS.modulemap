@@ -1,6 +1,0 @@
-framework module Pods_Circles_iOS {
-  umbrella header "Pods-Circles iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GCHelper
+import GameKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        GCHelper.sharedInstance.authenticateLocalUser()
+        // authenticate with Game Center
+        if GKLocalPlayer.localPlayer().authenticated == false {
+            GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
+                print("Game Center Authentication Error: \(error?.localizedDescription)")
+            }
+        } else {
+            print("Already authenticated")
+        }
+        
         return true
     }
 

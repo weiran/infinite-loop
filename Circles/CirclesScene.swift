@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-import GCHelper
+import GameKit
 
 class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var parentViewController : UIViewController?
@@ -170,7 +170,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         colliding = false
     }
     
-    func reset() {
+    private func reset() {
         self.score = 0
         colliding = false
         level = 0
