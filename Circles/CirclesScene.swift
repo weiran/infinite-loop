@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GCHelper
 
 class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var parentViewController : UIViewController?
@@ -196,6 +197,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 duration = 1 // reset duration
                 print("Miss")
                 aimCircle?.removeAllActions()
+                GCHelper.sharedInstance.reportLeaderboardIdentifier("TopScore", score: score)
+                
                 let failedAlert = UIAlertController(title: "Missed", message: "Your top score is \(score)", preferredStyle: .Alert)
                 failedAlert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (_) -> Void in
                     self.reset()
