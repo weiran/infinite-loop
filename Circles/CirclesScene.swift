@@ -36,12 +36,35 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMoveToView(view: SKView) {
+        configureBackgroundGradient()
         configureBackgroundCircle()
         configureTargetCircle()
         configureAimCircle()
         configureScoreLabel()
         
         self.physicsWorld.contactDelegate = self
+    }
+    
+    func configureBackgroundGradient() {
+        let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
+        let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = frame
+        gradientLayer.colors = [colour1, colour2].map { $0.CGColor }
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        
+        // render the gradient to a UIImage
+        UIGraphicsBeginImageContext(frame.size)
+        gradientLayer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let node = SKSpriteNode(texture: SKTexture(image: image));
+        node.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame))
+        node.zPosition = -1
+        self.addChild(node)
     }
     
     private func configureBackgroundCircle() {
