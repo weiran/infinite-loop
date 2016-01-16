@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24CF594C1BF8A50F0031AF29 /* Circles iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Circles iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24CF594C1BF8A50F0031AF29 /* Circle Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Circle Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CF594F1BF8A50F0031AF29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CF59511BF8A50F0031AF29 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		24CF59531BF8A50F0031AF29 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		24CF594D1BF8A50F0031AF29 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24CF594C1BF8A50F0031AF29 /* Circles iOS.app */,
+				24CF594C1BF8A50F0031AF29 /* Circle Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 			);
 			name = "Circles iOS";
 			productName = "Circles iOS";
-			productReference = 24CF594C1BF8A50F0031AF29 /* Circles iOS.app */;
+			productReference = 24CF594C1BF8A50F0031AF29 /* Circle Test.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -266,7 +266,7 @@
 				INFOPLIST_FILE = "Circles iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Circle Test";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -279,7 +279,7 @@
 				INFOPLIST_FILE = "Circles iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Circle Test";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
