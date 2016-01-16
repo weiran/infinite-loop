@@ -30,7 +30,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 case 5...9: level = 1
                 case 10...14: level = 2
                 case 15...19: level = 3
-                default: level = 4
+                case 20...29: level = 4
+                default: level = 5
             }
         }
     }
@@ -77,8 +78,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func configureTargetCircle() {
-        var maxTargetSize = 120
-        var minTargetSize = 100
+        var maxTargetSize = 160
+        var minTargetSize = 120
         let difficultyFactor = 20
         
         maxTargetSize = maxTargetSize - (difficultyFactor * level)
