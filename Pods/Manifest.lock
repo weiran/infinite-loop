@@ -1,0 +1,10 @@
+PODS:
+  - GCHelper (0.2.6)
+
+DEPENDENCIES:
+  - GCHelper
+
+SPEC CHECKSUMS:
+  GCHelper: 4a31dac6834c2a2f037cfe61a19303e351fbfb15
+
+COCOAPODS: 0.39.0
