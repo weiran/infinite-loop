@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // authenticate with Game Center
         if GKLocalPlayer.localPlayer().authenticated == false {
             GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
-                print("Game Center Authentication Error: \(error?.localizedDescription)")
+                if let _error = error {
+                    print("Game Center Authentication Error: \(_error.localizedDescription)")
+                }
             }
         } else {
             print("Already authenticated")

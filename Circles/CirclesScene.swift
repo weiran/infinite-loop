@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import GameKit
 
 class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var parentViewController : UIViewController?
@@ -20,6 +19,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     private var aimCircle : SKShapeNode?
     private var scoreLabel : SKLabelNode?
     
+    var isSceneConfigured = false
     var colliding = false
     var duration = 1.0
     var level = 0
@@ -39,14 +39,18 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var leaderboardTopScore = 0
     
     override func didMoveToView(view: SKView) {
-        configureBackgroundGradient()
-        configureBackgroundCircle()
-        configureTargetCircle()
-        configureAimCircle()
-        configureScoreLabel()
-        getLeaderboardTopScore()
+        super.didMoveToView(view);
         
-        self.physicsWorld.contactDelegate = self
+        if isSceneConfigured == false {
+            configureBackgroundGradient()
+            configureBackgroundCircle()
+            configureTargetCircle()
+            configureAimCircle()
+            configureScoreLabel()
+            
+            self.physicsWorld.contactDelegate = self
+            isSceneConfigured = true
+        }
     }
     
     private func configureBackgroundGradient() {
@@ -184,7 +188,6 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         for _ in touches {
             if colliding {
                 score++
-                print("Hit score: \(score)")
                 configureTargetCircle()
                 colliding = false
                 
@@ -197,21 +200,10 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 }
             } else {
                 duration = 1 // reset duration
-                print("Miss")
                 aimCircle?.removeAllActions()
                 playerDidFail(score)
             }
         }
-    }
-    
-    private func getLeaderboardTopScore() {
-        let leaderboardRequest = GKLeaderboard()
-        leaderboardRequest.identifier = "CirclesTopScore"
-        leaderboardRequest.loadScoresWithCompletionHandler({ (scores: [GKScore]?, error: NSError?) -> Void in
-            if let topScore = leaderboardRequest.localPlayerScore?.value {
-                self.leaderboardTopScore = max(self.leaderboardTopScore, Int(topScore))
-            }
-        })
     }
     
     func playerDidFail(score: Int) { }

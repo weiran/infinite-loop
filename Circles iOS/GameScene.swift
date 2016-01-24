@@ -12,6 +12,12 @@ import GameKit
 class GameScene: CirclesScene {
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
+        
+        // get current top score
+        let topScore = NSUserDefaults.standardUserDefaults().integerForKey("TopScore")
+        self.leaderboardTopScore = topScore
+        
+        getLeaderboardTopScore()
     }
     
     override func playerDidFail(score: Int) {
@@ -27,11 +33,23 @@ class GameScene: CirclesScene {
         }
         
         let topScore = max(score, leaderboardTopScore)
-        let failedAlert = UIAlertController(title: "Missed", message: "Ha Ha.\nYour top score is \(topScore)", preferredStyle: .Alert)
-        failedAlert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (_) -> Void in
-            self.reset()
-        }))
+        NSUserDefaults.standardUserDefaults().setInteger(topScore, forKey: "TopScore")
         
-        self.parentViewController?.presentViewController(failedAlert, animated: true, completion: nil)
+        if let resultsScene = ResultsScene(fileNamed: "ResultsScene") {
+            resultsScene.score = score
+            resultsScene.topScore = topScore
+            resultsScene.gameScene = self
+            scene?.view?.presentScene(resultsScene, transition: SKTransition.doorsCloseVerticalWithDuration(0.3))
+        }
+    }
+    
+    private func getLeaderboardTopScore() {
+        let leaderboardRequest = GKLeaderboard()
+        leaderboardRequest.identifier = "CirclesTopScore"
+        leaderboardRequest.loadScoresWithCompletionHandler({ (scores: [GKScore]?, error: NSError?) -> Void in
+            if let topScore = leaderboardRequest.localPlayerScore?.value {
+                self.leaderboardTopScore = max(self.leaderboardTopScore, Int(topScore))
+            }
+        })
     }
 }
