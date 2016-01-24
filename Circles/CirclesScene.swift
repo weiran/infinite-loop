@@ -49,7 +49,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
     }
     
-    func configureBackgroundGradient() {
+    private func configureBackgroundGradient() {
         let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
         let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
         
@@ -170,7 +170,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         colliding = false
     }
     
-    private func reset() {
+    func reset() {
         self.score = 0
         colliding = false
         level = 0
@@ -199,22 +199,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 duration = 1 // reset duration
                 print("Miss")
                 aimCircle?.removeAllActions()
-                
-                // report score
-                let scoreObject = GKScore(leaderboardIdentifier: "CirclesTopScore")
-                scoreObject.value = Int64(score)
-                GKScore.reportScores([scoreObject]) { (error) -> Void in
-                    if error != nil {
-                        print("Error in reporting leaderboard scores: \(error)")
-                    }
-                }
-                
-                let topScore = max(score, leaderboardTopScore)
-                let failedAlert = UIAlertController(title: "Missed", message: "Ha Ha.\nYour top score is \(topScore)", preferredStyle: .Alert)
-                failedAlert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (_) -> Void in
-                    self.reset()
-                }))
-                self.parentViewController?.presentViewController(failedAlert, animated: true, completion: nil)
+                playerDidFail(score)
             }
         }
     }
@@ -228,6 +213,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
             }
         })
     }
+    
+    func playerDidFail(score: Int) { }
 }
 
 struct SceneNodes {
