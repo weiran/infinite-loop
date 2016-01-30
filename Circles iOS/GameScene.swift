@@ -39,7 +39,8 @@ class GameScene: CirclesScene {
             resultsScene.score = score
             resultsScene.topScore = topScore
             resultsScene.gameScene = self
-            scene?.view?.presentScene(resultsScene, transition: SKTransition.doorsCloseVerticalWithDuration(0.3))
+            resultsScene.scaleMode = .AspectFill
+            scene?.view?.presentScene(resultsScene, transition: SKTransition.crossFadeWithDuration(0.3))
         }
     }
     

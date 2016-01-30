@@ -9,14 +9,24 @@
 import SpriteKit
 
 class ResultsScene: SKScene {
+    
+    let radius : CGFloat = 180
+    let width : CGFloat = 12
+    let circleSize = 20
+    
     var score: Int?
     var topScore: Int?
+    
     var retryButton: SKLabelNode?
+    var backgroundCircle: SKShapeNode?
+    
     var gameScene: GameScene?
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
+        
         configureBackgroundGradient()
+        configureBackgroundCircle()
         configureScoreLabel()
         configureTopScoreDescriptionLabel()
         configureTopScoreLabel()
@@ -24,8 +34,11 @@ class ResultsScene: SKScene {
     }
     
     private func configureBackgroundGradient() {
-        let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
-        let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
+//        let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
+//        let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
+        let colour1 = UIColor(white: 0.2, alpha: 1)
+        let colour2 = UIColor(white: 0.7, alpha: 1)
+
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
@@ -48,19 +61,29 @@ class ResultsScene: SKScene {
     private func configureScoreLabel() {
         let scoreLabel = SKLabelNode()
         scoreLabel.text = String(score!)
-        scoreLabel.position = CGPointMake(frame.midX, frame.size.height - 160)
         scoreLabel.fontColor = SKColor.whiteColor()
         scoreLabel.fontSize = 64
         scoreLabel.fontName = "SanFranciscoDisplay-Bold"
+        scoreLabel.position = CGPointMake(frame.midX, frame.midY - (scoreLabel.frame.size.height / 2))
         
         self.addChild(scoreLabel)
-        //self.scoreLabel = scoreLabel
+    }
+    
+    private func configureBackgroundCircle() {
+        let backgroundCircle = SKShapeNode(circleOfRadius: radius)
+        backgroundCircle.position = CGPointMake(frame.midX, frame.midY)
+        backgroundCircle.strokeColor = SKColor.whiteColor()
+        backgroundCircle.lineWidth = width
+        backgroundCircle.fillColor = SKColor.clearColor()
+        self.backgroundCircle = backgroundCircle
+        
+        self.addChild(backgroundCircle)
     }
     
     private func configureTopScoreDescriptionLabel() {
         let scoreLabel = SKLabelNode()
-        scoreLabel.text = "My Best Score"
-        scoreLabel.position = CGPointMake(frame.midX, frame.size.height - 300)
+        scoreLabel.text = "Top Score"
+        scoreLabel.position = CGPointMake(frame.midX, backgroundCircle!.position.y + radius + 130)
         scoreLabel.fontColor = SKColor.whiteColor()
         scoreLabel.fontSize = 20
         scoreLabel.fontName = "SanFranciscoDisplay-Normal"
@@ -71,7 +94,7 @@ class ResultsScene: SKScene {
     private func configureTopScoreLabel() {
         let scoreLabel = SKLabelNode()
         scoreLabel.text = topScore == nil ? "0" : String(topScore!)
-        scoreLabel.position = CGPointMake(frame.midX, frame.size.height - 350)
+        scoreLabel.position = CGPointMake(frame.midX, backgroundCircle!.position.y + radius + 80)
         scoreLabel.fontColor = SKColor.whiteColor()
         scoreLabel.fontSize = 32
         scoreLabel.fontName = "SanFranciscoDisplay-Bold"
@@ -82,7 +105,7 @@ class ResultsScene: SKScene {
     private func configureRetryButton() {
         let retryButton = SKLabelNode()
         retryButton.text = "Retry"
-        retryButton.position = CGPointMake(frame.midX, frame.size.height - 500)
+        retryButton.position = CGPointMake(frame.midX, backgroundCircle!.position.y - radius - 130)
         retryButton.fontColor = SKColor.whiteColor()
         retryButton.fontSize = 32
         retryButton.fontName = "SanFranciscoDisplay-Bold"
