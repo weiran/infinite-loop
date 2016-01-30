@@ -18,6 +18,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     private var targetCircle : SKShapeNode?
     private var aimCircle : SKShapeNode?
     private var scoreLabel : SKLabelNode?
+    private var bounceAction = SKAction.sequence([SKAction.scaleTo(1.1, duration: 0.1), SKAction.scaleTo(1, duration: 0.3)])
     
     var isSceneConfigured = false
     var colliding = false
@@ -25,7 +26,9 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var level = 0
     var score = 0 {
         didSet {
-            scoreLabel?.text = "\(score)"            
+            scoreLabel?.text = "\(score)"
+            scoreLabel?.runAction(bounceAction)
+            
             switch score {
                 case 0...4: level = 0
                 case 5...9: level = 1
@@ -183,8 +186,6 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Called when a touch begins */
-        
         for _ in touches {
             if colliding {
                 score++
