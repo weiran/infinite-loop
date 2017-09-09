@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: CirclesScene {
-    override func didMoveToView(view: SKView) {
-        super.didMoveToView(view)
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
     }
 }

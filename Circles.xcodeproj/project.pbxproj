@@ -106,6 +106,7 @@
 					24BD31611BF779F800AF40EB = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 2KB59GPA9B;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -258,6 +259,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -271,6 +273,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

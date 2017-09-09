@@ -10,44 +10,44 @@ import SpriteKit
 import GameKit
 
 class GameScene: CirclesScene {
-    override func didMoveToView(view: SKView) {
-        super.didMoveToView(view)
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
         
         // get current top score
-        let topScore = NSUserDefaults.standardUserDefaults().integerForKey("TopScore")
+        let topScore = UserDefaults.standard.integer(forKey: "TopScore")
         self.leaderboardTopScore = topScore
         
         getLeaderboardTopScore()
     }
     
-    override func playerDidFail(score: Int) {
+    override func playerDidFail(_ score: Int) {
         super.playerDidFail(score)
         
         // report score
         let scoreObject = GKScore(leaderboardIdentifier: "CirclesTopScore")
         scoreObject.value = Int64(score)
-        GKScore.reportScores([scoreObject]) { (error) -> Void in
+        GKScore.report([scoreObject], withCompletionHandler: { (error) -> Void in
             if error != nil {
                 print("Error in reporting leaderboard scores: \(error)")
             }
-        }
+        }) 
         
         let topScore = max(score, leaderboardTopScore)
-        NSUserDefaults.standardUserDefaults().setInteger(topScore, forKey: "TopScore")
+        UserDefaults.standard.set(topScore, forKey: "TopScore")
         
         if let resultsScene = ResultsScene(fileNamed: "ResultsScene") {
             resultsScene.score = score
             resultsScene.topScore = topScore
             resultsScene.gameScene = self
-            resultsScene.scaleMode = .AspectFill
-            scene?.view?.presentScene(resultsScene, transition: SKTransition.crossFadeWithDuration(0.3))
+            resultsScene.scaleMode = .aspectFill
+            scene?.view?.presentScene(resultsScene, transition: SKTransition.crossFade(withDuration: 0.3))
         }
     }
     
-    private func getLeaderboardTopScore() {
+    fileprivate func getLeaderboardTopScore() {
         let leaderboardRequest = GKLeaderboard()
         leaderboardRequest.identifier = "CirclesTopScore"
-        leaderboardRequest.loadScoresWithCompletionHandler({ (scores: [GKScore]?, error: NSError?) -> Void in
+        leaderboardRequest.loadScores(completionHandler: { (scores, error) in
             if let topScore = leaderboardRequest.localPlayerScore?.value {
                 self.leaderboardTopScore = max(self.leaderboardTopScore, Int(topScore))
             }

@@ -15,10 +15,10 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     let width : CGFloat = 12
     let circleSize = 20
     
-    private var targetCircle : SKShapeNode?
-    private var aimCircle : SKShapeNode?
-    private var scoreLabel : SKLabelNode?
-    private var bounceAction = SKAction.sequence([SKAction.scaleTo(1.1, duration: 0.1), SKAction.scaleTo(1, duration: 0.3)])
+    fileprivate var targetCircle : SKShapeNode?
+    fileprivate var aimCircle : SKShapeNode?
+    fileprivate var scoreLabel : SKLabelNode?
+    fileprivate var bounceAction = SKAction.sequence([SKAction.scale(to: 1.1, duration: 0.1), SKAction.scale(to: 1, duration: 0.3)])
     
     var isSceneConfigured = false
     var colliding = false
@@ -27,7 +27,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     var score = 0 {
         didSet {
             scoreLabel?.text = "\(score)"
-            scoreLabel?.runAction(bounceAction)
+            scoreLabel?.run(bounceAction)
             
             switch score {
                 case 0...4: level = 0
@@ -41,8 +41,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     var leaderboardTopScore = 0
     
-    override func didMoveToView(view: SKView) {
-        super.didMoveToView(view);
+    override func didMove(to view: SKView) {
+        super.didMove(to: view);
         
         if isSceneConfigured == false {
             configureBackgroundGradient()
@@ -56,38 +56,38 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    private func configureBackgroundGradient() {
+    fileprivate func configureBackgroundGradient() {
         let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
         let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
-        gradientLayer.colors = [colour1, colour2].map { $0.CGColor }
+        gradientLayer.colors = [colour1, colour2].map { $0.cgColor }
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         
         // render the gradient to a UIImage
         UIGraphicsBeginImageContext(frame.size)
-        gradientLayer.renderInContext(UIGraphicsGetCurrentContext()!)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let node = SKSpriteNode(texture: SKTexture(image: image));
-        node.position = CGPointMake(frame.midX, frame.midY)
+        let node = SKSpriteNode(texture: SKTexture(image: image!));
+        node.position = CGPoint(x: frame.midX, y: frame.midY)
         node.zPosition = -1 // behind everything
         self.addChild(node)
     }
     
-    private func configureBackgroundCircle() {
+    fileprivate func configureBackgroundCircle() {
         let backgroundCircle = SKShapeNode(circleOfRadius: radius)
-        backgroundCircle.position = CGPointMake(frame.midX, frame.midY)
-        backgroundCircle.strokeColor = SKColor.whiteColor()
+        backgroundCircle.position = CGPoint(x: frame.midX, y: frame.midY)
+        backgroundCircle.strokeColor = SKColor.white
         backgroundCircle.lineWidth = width
-        backgroundCircle.fillColor = SKColor.clearColor()
+        backgroundCircle.fillColor = SKColor.clear
         self.addChild(backgroundCircle)
     }
     
-    private func configureTargetCircle() {
+    fileprivate func configureTargetCircle() {
         var maxTargetSize = 160
         var minTargetSize = 120
         let difficultyFactor = 20
@@ -95,33 +95,33 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         maxTargetSize = maxTargetSize - (difficultyFactor * level)
         minTargetSize = minTargetSize - (difficultyFactor * level)
         
-        let targetStartDegrees = Int.random(0...270)
+        let targetStartDegrees = Int.random(Range(0...270))
         let maxEndDegrees = targetStartDegrees + maxTargetSize
         let minEndDegrees = targetStartDegrees + minTargetSize
         
-        var targetEndDegrees = Int.random(targetStartDegrees...maxEndDegrees)
+        var targetEndDegrees = Int.random(Range(targetStartDegrees...maxEndDegrees))
         if targetEndDegrees < minEndDegrees {
             targetEndDegrees = minEndDegrees
         }
         
         let targetStartAngle = targetStartDegrees.degreesToRadians
         let targetEndAngle = targetEndDegrees.degreesToRadians
-        let targetSemiCirclePath = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: targetStartAngle, endAngle: targetEndAngle, clockwise: true)
+        let targetSemiCirclePath = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: targetStartAngle, endAngle: targetEndAngle, clockwise: true)
         
         if targetCircle == nil {
-            let targetCircle = SKShapeNode(path: targetSemiCirclePath.CGPath)
-            targetCircle.position = CGPointMake(frame.midX, frame.midY)
-            targetCircle.strokeColor = SKColor.purpleColor()
+            let targetCircle = SKShapeNode(path: targetSemiCirclePath.cgPath)
+            targetCircle.position = CGPoint(x: frame.midX, y: frame.midY)
+            targetCircle.strokeColor = SKColor.purple
             targetCircle.lineWidth = width
-            targetCircle.fillColor = SKColor.clearColor()
+            targetCircle.fillColor = SKColor.clear
             
             self.addChild(targetCircle)
             self.targetCircle = targetCircle
         }
         
-        targetCircle?.path = targetSemiCirclePath.CGPath
+        targetCircle?.path = targetSemiCirclePath.cgPath
         
-        let targetCirclePhysicsBody = SKPhysicsBody(polygonFromPath: targetCircle!.path!)
+        let targetCirclePhysicsBody = SKPhysicsBody(polygonFrom: targetCircle!.path!)
         targetCirclePhysicsBody.affectedByGravity = false
         targetCirclePhysicsBody.categoryBitMask = SceneNodes.TargetCircle
         targetCirclePhysicsBody.collisionBitMask = 0
@@ -129,27 +129,27 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         targetCircle?.physicsBody = targetCirclePhysicsBody
     }
     
-    private func configureAimCircle() {
+    fileprivate func configureAimCircle() {
         let aimStartAngle = 0.degreesToRadians
         let aimEndAngle = circleSize.degreesToRadians
-        let aimCirclePath = UIBezierPath(arcCenter: CGPointZero, radius: radius, startAngle: aimStartAngle, endAngle: aimEndAngle, clockwise: true)
+        let aimCirclePath = UIBezierPath(arcCenter: CGPoint.zero, radius: radius, startAngle: aimStartAngle, endAngle: aimEndAngle, clockwise: true)
         
         if (aimCircle == nil) {
-            let aimCircle = SKShapeNode(path: aimCirclePath.CGPath)
-            aimCircle.position = CGPointMake(frame.midX, frame.midY)
-            aimCircle.strokeColor = SKColor.redColor()
+            let aimCircle = SKShapeNode(path: aimCirclePath.cgPath)
+            aimCircle.position = CGPoint(x: frame.midX, y: frame.midY)
+            aimCircle.strokeColor = SKColor.red
             aimCircle.lineWidth = width
-            aimCircle.fillColor = SKColor.clearColor()
+            aimCircle.fillColor = SKColor.clear
             
             self.addChild(aimCircle)
             self.aimCircle = aimCircle
         }
         
-        let moveAimAction = SKAction.rotateByAngle(CGFloat(M_PI), duration: 1)
-        let repeatAction = SKAction.repeatActionForever(moveAimAction)
-        aimCircle?.runAction(repeatAction)
+        let moveAimAction = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)
+        let repeatAction = SKAction.repeatForever(moveAimAction)
+        aimCircle?.run(repeatAction)
         
-        let aimCirclePhysicsBody = SKPhysicsBody(polygonFromPath: aimCirclePath.CGPath)
+        let aimCirclePhysicsBody = SKPhysicsBody(polygonFrom: aimCirclePath.cgPath)
         aimCirclePhysicsBody.affectedByGravity = false
         aimCirclePhysicsBody.categoryBitMask = SceneNodes.AimCircle
         aimCirclePhysicsBody.collisionBitMask = 0
@@ -157,23 +157,23 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         aimCircle?.physicsBody = aimCirclePhysicsBody
     }
     
-    private func configureScoreLabel() {
+    fileprivate func configureScoreLabel() {
         let scoreLabel = SKLabelNode()
         scoreLabel.text = "0"
-        scoreLabel.fontColor = SKColor.whiteColor()
+        scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64
         scoreLabel.fontName = "SanFranciscoDisplay-Bold"
-        scoreLabel.position = CGPointMake(frame.midX, frame.midY - (scoreLabel.frame.size.height / 2))
+        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - (scoreLabel.frame.size.height / 2))
         
         self.addChild(scoreLabel)
         self.scoreLabel = scoreLabel
     }
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         colliding = true
     }
     
-    func didEndContact(contact: SKPhysicsContact) {
+    func didEnd(_ contact: SKPhysicsContact) {
         colliding = false
     }
     
@@ -185,19 +185,19 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         configureTargetCircle()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for _ in touches {
             if colliding {
-                score++
+                score += 1
                 configureTargetCircle()
                 colliding = false
                 
                 duration = duration * 0.95
                 if let aimCircle = aimCircle {
-                    let moveAimAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:duration)
-                    let repeatAction = SKAction.repeatActionForever(moveAimAction)
+                    let moveAimAction = SKAction.rotate(byAngle: CGFloat(M_PI), duration:duration)
+                    let repeatAction = SKAction.repeatForever(moveAimAction)
                     aimCircle.removeAllActions()
-                    aimCircle.runAction(repeatAction)
+                    aimCircle.run(repeatAction)
                 }
             } else {
                 duration = 1 // reset duration
@@ -207,7 +207,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func playerDidFail(score: Int) { }
+    func playerDidFail(_ score: Int) { }
 }
 
 struct SceneNodes {
@@ -220,15 +220,15 @@ extension Int {
         return CGFloat(self) * CGFloat(M_PI) / 180.0
     }
     
-    static func random(range: Range<Int>) -> Int {
+    static func random(_ range: Range<Int>) -> Int {
         var offset = 0
         
-        if range.startIndex < 0 { // allow negative ranges
-            offset = abs(range.startIndex)
+        if range.lowerBound < 0 { // allow negative ranges
+            offset = abs(range.lowerBound)
         }
         
-        let min = UInt32(range.startIndex + offset)
-        let max = UInt32(range.endIndex + offset)
+        let min = UInt32(range.lowerBound + offset)
+        let max = UInt32(range.upperBound + offset)
         
         return Int(min + arc4random_uniform(max - min)) - offset
     }
