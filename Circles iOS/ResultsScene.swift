@@ -30,7 +30,6 @@ class ResultsScene: SKScene {
         configureBackgroundGradient()
         configureBackgroundCircle()
         configureScoreLabel()
-        configureTopScoreDescriptionLabel()
         configureTopScoreLabel()
         configureRetryButton()
         configureLeaderboardButton()
@@ -83,17 +82,6 @@ class ResultsScene: SKScene {
         self.addChild(backgroundCircle)
     }
     
-    fileprivate func configureTopScoreDescriptionLabel() {
-        let scoreLabel = SKLabelNode()
-        scoreLabel.text = "Top Score"
-        scoreLabel.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y + radius + 130)
-        scoreLabel.fontColor = SKColor.white
-        scoreLabel.fontSize = 20
-        scoreLabel.fontName = "SanFranciscoDisplay-Normal"
-        
-        self.addChild(scoreLabel)
-    }
-    
     fileprivate func configureTopScoreLabel() {
         let scoreLabel = SKLabelNode()
         scoreLabel.text = topScore == nil ? "0" : String(topScore!)
@@ -107,7 +95,8 @@ class ResultsScene: SKScene {
     
     fileprivate func configureLeaderboardButton() {
         let leaderboardButton = SKSpriteNode(imageNamed: "LeaderboardIcon")
-        leaderboardButton.position = CGPoint(x: frame.width - 375, y: backgroundCircle!.position.y + radius + 105)
+        leaderboardButton.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y + radius + 140)
+        leaderboardButton.size = CGSize(width: 40, height: 40)
         
         let pulseUp = SKAction.scale(to: 1.05, duration: 0.3)
         let pulseDown = SKAction.scale(to: 0.95, duration: 0.3)
