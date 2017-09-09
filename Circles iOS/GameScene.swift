@@ -27,7 +27,7 @@ class GameScene: CirclesScene {
         let scoreObject = GKScore(leaderboardIdentifier: "CirclesTopScore")
         scoreObject.value = Int64(score)
         GKScore.report([scoreObject], withCompletionHandler: { (error) -> Void in
-            if error != nil {
+            if let error = error {
                 print("Error in reporting leaderboard scores: \(error)")
             }
         }) 

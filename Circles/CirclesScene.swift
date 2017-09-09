@@ -145,7 +145,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
             self.aimCircle = aimCircle
         }
         
-        let moveAimAction = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)
+        let moveAimAction = SKAction.rotate(byAngle: .pi, duration: 1)
         let repeatAction = SKAction.repeatForever(moveAimAction)
         aimCircle?.run(repeatAction)
         
@@ -194,7 +194,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
                 
                 duration = duration * 0.95
                 if let aimCircle = aimCircle {
-                    let moveAimAction = SKAction.rotate(byAngle: CGFloat(M_PI), duration:duration)
+                    let moveAimAction = SKAction.rotate(byAngle: .pi, duration:duration)
                     let repeatAction = SKAction.repeatForever(moveAimAction)
                     aimCircle.removeAllActions()
                     aimCircle.run(repeatAction)
@@ -217,7 +217,7 @@ struct SceneNodes {
 
 extension Int {
     var degreesToRadians : CGFloat {
-        return CGFloat(self) * CGFloat(M_PI) / 180.0
+        return CGFloat(self) * .pi / 180.0
     }
     
     static func random(_ range: Range<Int>) -> Int {
