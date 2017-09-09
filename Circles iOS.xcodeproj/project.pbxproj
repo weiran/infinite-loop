@@ -112,7 +112,7 @@
 					24CF594B1BF8A50F0031AF29 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 2KB59GPA9B;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -282,7 +282,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "Circle Test";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -297,7 +298,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "Circle Test";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
