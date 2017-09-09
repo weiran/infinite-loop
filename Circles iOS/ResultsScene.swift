@@ -9,7 +9,6 @@
 import SpriteKit
 
 class ResultsScene: SKScene {
-    
     let radius : CGFloat = 180
     let width : CGFloat = 12
     let circleSize = 20
