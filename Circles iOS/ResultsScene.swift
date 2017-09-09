@@ -66,7 +66,7 @@ class ResultsScene: SKScene {
         scoreLabel.text = String(score!)
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64
-        scoreLabel.fontName = "SanFranciscoDisplay-Bold"
+        scoreLabel.fontName = UIFont.systemFont(ofSize: 64).fontName
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - (scoreLabel.frame.size.height / 2))
         
         self.addChild(scoreLabel)
@@ -100,7 +100,7 @@ class ResultsScene: SKScene {
         scoreLabel.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y + radius + 80)
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 32
-        scoreLabel.fontName = "SanFranciscoDisplay-Bold"
+        scoreLabel.fontName = UIFont.boldSystemFont(ofSize: 32).fontName
         
         self.addChild(scoreLabel)
     }
@@ -126,7 +126,7 @@ class ResultsScene: SKScene {
         retryButton.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y - radius - 130)
         retryButton.fontColor = SKColor.white
         retryButton.fontSize = 32
-        retryButton.fontName = "SanFranciscoDisplay-Bold"
+        retryButton.fontName = UIFont.boldSystemFont(ofSize: 64).fontName
         retryButton.name = "retryButton"
         
         let pulseUp = SKAction.scale(to: 1.05, duration: 0.3)

@@ -162,7 +162,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "0"
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64
-        scoreLabel.fontName = "SanFranciscoDisplay-Bold"
+        scoreLabel.fontName = UIFont.systemFont(ofSize: 64).fontName
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - (scoreLabel.frame.size.height / 2))
         
         self.addChild(scoreLabel)
