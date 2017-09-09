@@ -10,6 +10,8 @@ import SpriteKit
 import GameKit
 
 class GameScene: CirclesScene {
+    var gameViewController: GameViewController?
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -40,6 +42,7 @@ class GameScene: CirclesScene {
             resultsScene.topScore = topScore
             resultsScene.gameScene = self
             resultsScene.scaleMode = .aspectFill
+            resultsScene.gameViewController = gameViewController
             scene?.view?.presentScene(resultsScene, transition: SKTransition.crossFade(withDuration: 0.3))
         }
     }

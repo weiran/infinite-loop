@@ -8,23 +8,20 @@
 
 import UIKit
 import SpriteKit
+import GameKit
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
-            
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .aspectFill
-            
             scene.parentViewController = self
+            scene.gameViewController = self
             
             skView.presentScene(scene)
         }
@@ -42,12 +39,22 @@ class GameViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    func showGameCentreLeaderboard() {
+        if GKLocalPlayer.localPlayer().isAuthenticated {
+            let gcViewController = GKGameCenterViewController()
+            gcViewController.gameCenterDelegate = self
+            gcViewController.viewState = .leaderboards
+            gcViewController.leaderboardIdentifier = "CirclesTopScore"
+            present(gcViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

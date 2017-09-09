@@ -18,9 +18,11 @@ class ResultsScene: SKScene {
     var topScore: Int?
     
     var retryButton: SKLabelNode?
+    var leaderboardButton: SKSpriteNode?
     var backgroundCircle: SKShapeNode?
     
     var gameScene: GameScene?
+    var gameViewController: GameViewController?
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -31,6 +33,7 @@ class ResultsScene: SKScene {
         configureTopScoreDescriptionLabel()
         configureTopScoreLabel()
         configureRetryButton()
+        configureLeaderboardButton()
     }
     
     fileprivate func configureBackgroundGradient() {
@@ -102,6 +105,21 @@ class ResultsScene: SKScene {
         self.addChild(scoreLabel)
     }
     
+    fileprivate func configureLeaderboardButton() {
+        let leaderboardButton = SKSpriteNode(imageNamed: "LeaderboardIcon")
+        leaderboardButton.position = CGPoint(x: frame.width - 375, y: backgroundCircle!.position.y + radius + 105)
+        
+        let pulseUp = SKAction.scale(to: 1.05, duration: 0.3)
+        let pulseDown = SKAction.scale(to: 0.95, duration: 0.3)
+        let pulse = SKAction.sequence([pulseUp, pulseDown])
+        let repeatPulse = SKAction.repeatForever(pulse)
+        leaderboardButton.run(repeatPulse)
+        
+        self.leaderboardButton = leaderboardButton
+        
+        self.addChild(leaderboardButton)
+    }
+    
     fileprivate func configureRetryButton() {
         let retryButton = SKLabelNode()
         retryButton.text = "Retry"
@@ -129,6 +147,8 @@ class ResultsScene: SKScene {
             if self.atPoint(location) == self.retryButton {
                 gameScene?.reset()
                 scene?.view?.presentScene(gameScene!, transition: SKTransition.doorway(withDuration: 0.3))
+            } else if self.atPoint(location) == self.leaderboardButton {
+                gameViewController?.showGameCentreLeaderboard()
             }
         }
     }
