@@ -13,17 +13,7 @@ import GameKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        // authenticate with Game Center
-        if GKLocalPlayer.localPlayer().isAuthenticated == false {
-            GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
-                if let _error = error {
-                    print("Game Center Authentication Error: \(_error.localizedDescription)")
-                }
-            }
-        }
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
         return true
     }
 }

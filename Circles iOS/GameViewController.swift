@@ -13,6 +13,8 @@ import GameKit
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authenticateGameCentre()
 
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
@@ -43,6 +45,17 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         return true
     }
     
+    func authenticateGameCentre() {
+        GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
+            if let view = view {
+                self.present(view, animated: true, completion: nil)
+            }
+            if let error = error {
+                print("Game Center Authentication Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func showGameCentreLeaderboard() {
         if GKLocalPlayer.localPlayer().isAuthenticated {
             let gcViewController = GKGameCenterViewController()
@@ -50,6 +63,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             gcViewController.viewState = .leaderboards
             gcViewController.leaderboardIdentifier = "CirclesTopScore"
             present(gcViewController, animated: true, completion: nil)
+        }
+        else {
+            let loginAlert = UIAlertController(title: "Game Centre", message: "You need to be signed into Game Centre to view leaderboards.", preferredStyle: .alert)
+            loginAlert.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { action in
+                self.authenticateGameCentre()
+            }))
+            loginAlert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            present(loginAlert, animated: true, completion: nil)
         }
     }
     
