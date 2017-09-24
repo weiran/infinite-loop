@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Circles iOS.xcodeproj">
+      location = "group:/Users/weiran/git/weiran/Circles/Infinite Loop.xcodeproj">
    </FileRef>
 </Workspace>
