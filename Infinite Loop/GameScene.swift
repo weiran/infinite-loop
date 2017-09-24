@@ -18,8 +18,6 @@ class GameScene: CirclesScene {
         // get current top score
         let topScore = UserDefaults.standard.integer(forKey: "TopScore")
         self.leaderboardTopScore = topScore
-        
-        getLeaderboardTopScore()
     }
     
     override func playerDidFail(_ score: Int) {

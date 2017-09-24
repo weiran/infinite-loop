@@ -35,8 +35,6 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureBackgroundGradient() {
-//        let colour1 = UIColor(red:0.215, green:0.609, blue:0.976, alpha:1)
-//        let colour2 = UIColor(red:0.759, green:0.225, blue:0.985, alpha:1)
         let colour1 = UIColor(white: 0.2, alpha: 1)
         let colour2 = UIColor(white: 0.7, alpha: 1)
 
