@@ -23,6 +23,9 @@ class GameScene: CirclesScene {
     override func playerDidFail(_ score: Int) {
         super.playerDidFail(score)
         
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.error)
+        
         // report score
         let scoreObject = GKScore(leaderboardIdentifier: "CirclesTopScore")
         scoreObject.value = Int64(score)
@@ -43,6 +46,11 @@ class GameScene: CirclesScene {
             resultsScene.gameViewController = gameViewController
             scene?.view?.presentScene(resultsScene, transition: SKTransition.crossFade(withDuration: 0.3))
         }
+    }
+    
+    override func playerDidSucceed() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
     
     fileprivate func getLeaderboardTopScore() {

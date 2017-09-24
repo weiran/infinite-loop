@@ -186,6 +186,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        playerDidSucceed()
+        
         for _ in touches {
             if colliding {
                 score += 1
@@ -208,6 +210,8 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerDidFail(_ score: Int) { }
+    
+    func playerDidSucceed() { }
 }
 
 struct SceneNodes {
