@@ -35,8 +35,15 @@ class GameScene: CirclesScene {
             }
         }) 
         
+        // save top score
         let topScore = max(score, leaderboardTopScore)
         UserDefaults.standard.set(topScore, forKey: "TopScore")
+        
+        // save attempts count
+        let attemptsCount = UserDefaults.standard.integer(forKey: "AttemptsCount")
+        UserDefaults.standard.set(attemptsCount + 1, forKey: "AttemptsCount")
+        
+        gameViewController?.showRatingDialog()
         
         if let resultsScene = ResultsScene(fileNamed: "ResultsScene") {
             resultsScene.score = score

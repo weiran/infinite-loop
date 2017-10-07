@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameKit
+import StoreKit
 
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
@@ -76,5 +77,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func showRatingDialog() {
+        let attemptsCount = UserDefaults.standard.integer(forKey: "AttemptsCount")
+        if attemptsCount == 5 || attemptsCount == 15 || attemptsCount == 30 {
+            SKStoreReviewController.requestReview()
+        }
     }
 }
