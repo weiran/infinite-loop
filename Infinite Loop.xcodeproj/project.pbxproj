@@ -291,6 +291,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2KB59GPA9B;
 				INFOPLIST_FILE = "Infinite Loop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "Infinite Loop";
@@ -307,6 +308,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2KB59GPA9B;
 				INFOPLIST_FILE = "Infinite Loop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.weiran.Circles;
 				PRODUCT_NAME = "Infinite Loop";
