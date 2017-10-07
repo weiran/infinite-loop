@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,26 +18,19 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fan-9P-dmP">
-                                <rect key="frame" x="180" y="180" width="240" height="240"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Dju-8D-OWz">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="ZiD-oh-G6U"/>
-                                    <constraint firstAttribute="width" constant="240" id="rEf-lH-7MZ"/>
-                                </constraints>
-                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="AFA-CT-NMl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fan-9P-dmP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="M0h-sf-M7J"/>
-                            <constraint firstItem="fan-9P-dmP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VSM-pR-euS"/>
+                            <constraint firstItem="AFA-CT-NMl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="1fI-ZO-31Y"/>
+                            <constraint firstItem="AFA-CT-NMl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="cOc-Uh-2i7"/>
+                            <constraint firstAttribute="bottom" secondItem="AFA-CT-NMl" secondAttribute="bottom" id="ji1-i6-5YT"/>
+                            <constraint firstAttribute="trailing" secondItem="AFA-CT-NMl" secondAttribute="trailing" id="qf2-qg-Zx8"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreenIcon" width="512" height="512"/>
+        <image name="Background" width="414" height="902"/>
     </resources>
 </document>
