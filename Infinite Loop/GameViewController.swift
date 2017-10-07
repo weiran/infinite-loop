@@ -14,6 +14,8 @@ import StoreKit
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authenticateGameCentre(showPrompt: false)
 
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
@@ -44,9 +46,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         return true
     }
     
-    func authenticateGameCentre() {
+    func authenticateGameCentre(showPrompt: Bool = true) {
         GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
-            if let view = view {
+            if showPrompt, let view = view {
                 self.present(view, animated: true, completion: nil)
             }
             if let error = error {
