@@ -14,8 +14,6 @@ import StoreKit
 class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        authenticateGameCentre()
 
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
