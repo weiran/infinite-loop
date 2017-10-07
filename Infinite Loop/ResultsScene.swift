@@ -32,12 +32,13 @@ class ResultsScene: SKScene {
         configureTopScoreLabel()
         configureRetryButton()
         configureLeaderboardButton()
+        
+        gameViewController?.authenticateGameCentre()
     }
     
     fileprivate func configureBackgroundGradient() {
         let colour1 = UIColor(white: 0.2, alpha: 1)
         let colour2 = UIColor(white: 0.7, alpha: 1)
-
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
