@@ -47,7 +47,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func authenticateGameCentre(showPrompt: Bool = true) {
-        GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
+        GKLocalPlayer.local.authenticateHandler = { (view, error) in
             if showPrompt, let view = view {
                 self.present(view, animated: true, completion: nil)
             }
@@ -58,7 +58,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func showGameCentreLeaderboard() {
-        if GKLocalPlayer.localPlayer().isAuthenticated {
+        if GKLocalPlayer.local.isAuthenticated {
             let gcViewController = GKGameCenterViewController()
             gcViewController.gameCenterDelegate = self
             gcViewController.viewState = .leaderboards
