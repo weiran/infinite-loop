@@ -59,11 +59,10 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureScoreLabel() {
-        let scoreLabel = SKLabelNode()
+        let scoreLabel = SKLabelNode(fontNamed: "SFUI-Regular")
         scoreLabel.text = String(score!)
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64
-        scoreLabel.fontName = UIFont.systemFont(ofSize: 64).fontName
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - (scoreLabel.frame.size.height / 2))
         
         self.addChild(scoreLabel)
@@ -81,12 +80,11 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureTopScoreLabel() {
-        let scoreLabel = SKLabelNode()
+        let scoreLabel = SKLabelNode(fontNamed: "SFUI-Bold")
         scoreLabel.text = topScore == nil ? "0" : String(topScore!)
         scoreLabel.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y + radius + 80)
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 32
-        scoreLabel.fontName = UIFont.boldSystemFont(ofSize: 32).fontName
         
         self.addChild(scoreLabel)
     }
@@ -108,12 +106,11 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureRetryButton() {
-        let retryButton = SKLabelNode()
+        let retryButton = SKLabelNode(fontNamed: "SFUI-Bold")
         retryButton.text = "Retry"
         retryButton.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y - radius - 130)
         retryButton.fontColor = SKColor.white
         retryButton.fontSize = 32
-        retryButton.fontName = UIFont.boldSystemFont(ofSize: 64).fontName
         retryButton.name = "retryButton"
         
         let pulseUp = SKAction.scale(to: 1.05, duration: 0.3)
