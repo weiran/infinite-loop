@@ -18,6 +18,10 @@ class GameScene: CirclesScene {
         // get current top score
         let topScore = UserDefaults.standard.integer(forKey: "TopScore")
         self.leaderboardTopScore = topScore
+
+        // subscribe to app state notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(enteredBackground), name: .appWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enteredForeground), name: .appDidBecomeActive, object: nil)
     }
     
     override func playerDidFail(_ score: Int) {
@@ -59,8 +63,16 @@ class GameScene: CirclesScene {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
+
+    @objc func enteredBackground() {
+        self.view?.isUserInteractionEnabled = false
+    }
+
+    @objc func enteredForeground() {
+        self.view?.isUserInteractionEnabled = true
+    }
     
-    fileprivate func getLeaderboardTopScore() {
+    private func getLeaderboardTopScore() {
         let leaderboardRequest = GKLeaderboard()
         leaderboardRequest.identifier = "CirclesTopScore"
         leaderboardRequest.loadScores(completionHandler: { (scores, error) in
@@ -69,4 +81,9 @@ class GameScene: CirclesScene {
             }
         })
     }
+}
+
+extension Notification.Name {
+     static let appWillResignActive = Notification.Name("appWillResignActive")
+     static let appDidBecomeActive = Notification.Name("appDidBecomeActive")
 }
