@@ -158,7 +158,7 @@ class CirclesScene: SKScene, SKPhysicsContactDelegate {
     }
     
     fileprivate func configureScoreLabel() {
-        let scoreLabel = SKLabelNode(fontNamed: "SFUI-Regular")
+        let scoreLabel = SKLabelNode(fontNamed: "AvenirNext-Regular")
         scoreLabel.text = "0"
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64

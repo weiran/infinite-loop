@@ -59,7 +59,7 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureScoreLabel() {
-        let scoreLabel = SKLabelNode(fontNamed: "SFUI-Regular")
+        let scoreLabel = SKLabelNode(fontNamed: "AvenirNext-Regular")
         scoreLabel.text = String(score!)
         scoreLabel.fontColor = SKColor.white
         scoreLabel.fontSize = 64
@@ -80,7 +80,7 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureTopScoreLabel() {
-        let scoreLabel = SKLabelNode(fontNamed: "SFUI-Bold")
+        let scoreLabel = SKLabelNode(fontNamed: "AvenirNext-Regular")
         scoreLabel.text = topScore == nil ? "0" : String(topScore!)
         scoreLabel.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y + radius + 80)
         scoreLabel.fontColor = SKColor.white
@@ -106,7 +106,7 @@ class ResultsScene: SKScene {
     }
     
     fileprivate func configureRetryButton() {
-        let retryButton = SKLabelNode(fontNamed: "SFUI-Bold")
+        let retryButton = SKLabelNode(fontNamed: "AvenirNext-Regular")
         retryButton.text = "Retry"
         retryButton.position = CGPoint(x: frame.midX, y: backgroundCircle!.position.y - radius - 130)
         retryButton.fontColor = SKColor.white
