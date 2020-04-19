@@ -47,9 +47,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func authenticateGameCentre(showPrompt: Bool = true) {
-        GKLocalPlayer.local.authenticateHandler = { (view, error) in
-            if showPrompt, let view = view {
-                self.present(view, animated: true, completion: nil)
+        GKLocalPlayer.local.authenticateHandler = { (viewController, error) in
+            if showPrompt, let viewController = viewController {
+                self.present(viewController, animated: true, completion: nil)
             }
             if let error = error {
                 print("Game Center Authentication Error: \(error.localizedDescription)")
