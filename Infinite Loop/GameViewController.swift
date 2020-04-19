@@ -68,7 +68,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         else {
             let loginAlert = UIAlertController(title: "Game Centre", message: "You need to be signed into Game Centre to view leaderboards.", preferredStyle: .alert)
             loginAlert.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { action in
-                self.authenticateGameCentre()
+                self.authenticateGameCentre(showPrompt: true)
             }))
             loginAlert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
             present(loginAlert, animated: true, completion: nil)

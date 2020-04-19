@@ -33,7 +33,7 @@ class ResultsScene: SKScene {
         configureRetryButton()
         configureLeaderboardButton()
         
-        gameViewController?.authenticateGameCentre()
+        gameViewController?.authenticateGameCentre(showPrompt: false)
     }
     
     fileprivate func configureBackgroundGradient() {
