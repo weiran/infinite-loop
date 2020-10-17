@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		244F019E253B0A7500B74E29 /* Infinite Loop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Infinite Loop.entitlements"; sourceTree = "<group>"; };
 		24A16B221C54F35500F063AC /* ResultsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsScene.swift; sourceTree = "<group>"; };
 		24A16B241C54FB9800F063AC /* ResultsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResultsScene.sks; sourceTree = "<group>"; };
 		24CF594C1BF8A50F0031AF29 /* Infinite Loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Infinite Loop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +65,7 @@
 		24CF594E1BF8A50F0031AF29 /* Infinite Loop */ = {
 			isa = PBXGroup;
 			children = (
+				244F019E253B0A7500B74E29 /* Infinite Loop.entitlements */,
 				24CF59691BF8AEDE0031AF29 /* CirclesScene.swift */,
 				24CF59531BF8A50F0031AF29 /* GameScene.swift */,
 				24CF59511BF8A50F0031AF29 /* GameScene.sks */,
@@ -297,10 +299,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Infinite Loop/Infinite Loop.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2KB59GPA9B;
 				INFOPLIST_FILE = "Infinite Loop/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -317,10 +320,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Infinite Loop/Infinite Loop.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2KB59GPA9B;
 				INFOPLIST_FILE = "Infinite Loop/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
